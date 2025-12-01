@@ -19,3 +19,4 @@ Worksheet:\
 Low Fidelity Prototype:\
 
 Tabel Pembagian Tugas:\
+<img width="1894" height="406" alt="image" src="https://github.com/user-attachments/assets/c952958f-fbb8-4307-947c-2fa6266cff07" />
