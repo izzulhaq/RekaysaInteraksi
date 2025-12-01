@@ -5,9 +5,9 @@ Lunchify adalah aplikasi mobile yang dirancang khusus untuk membantu kelompok (t
 Rekayasa Interaksi D
 
 Team:
-Rizulloh Allaam Izzulhaq  (202210370311165) -> izzulhaq
-Muhammad Irfan Magianto   (202210370311195) -> MuhammadIrfanMagianto
-Yusron Nasrullah          (202210370311201) -> sudacoyysu
+/nRizulloh Allaam Izzulhaq  (202210370311165) -> izzulhaq
+/nMuhammad Irfan Magianto   (202210370311195) -> MuhammadIrfanMagianto
+/nYusron Nasrullah          (202210370311201) -> sudacoyysu
 
 Link Figma:
 https://www.figma.com/proto/6J5qZZSXWv1j3OKsFaMEbi/Lunchify--Rekayasa-Interaksi-?node-id=2902-302&p=f&t=qD8s9T8y8DywjjpQ-1&scaling=scale-down&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=2902%3A302&show-proto-sidebar=1
