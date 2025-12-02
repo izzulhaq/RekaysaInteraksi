@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lunchify/app/modules/voting/models/food_option.dart';
 import '../models/food_model.dart';
 
 class FoodCard extends StatelessWidget {
