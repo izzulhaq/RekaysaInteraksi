@@ -145,6 +145,7 @@ class RekomendasiView extends GetView<RekomendasiController> {
       ),
     );
   }
+  
 
   Widget _buildTextField(TextEditingController textCtrl) {
     return TextField(

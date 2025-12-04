@@ -15,7 +15,6 @@ class RekomendasiController extends GetxController {
   }
 
   void cariRekomendasi() {
-    // Logika ketika user submit pencarian
     print("Mencari di: ${locationC.text} dengan budget: ${budgetC.text}");
   }
 }
