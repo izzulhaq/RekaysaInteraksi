@@ -17,6 +17,10 @@ Worksheet:\
 ![WhatsApp Image 2025-10-13 at 14 19 44_532c6615](https://github.com/user-attachments/assets/661b642d-969b-4f3f-88b0-c5aea4afefbe)
 
 Low Fidelity Prototype:\
+![WhatsApp Image 2025-12-04 at 14 59 30_dc3255b5](https://github.com/user-attachments/assets/f88ec370-f3f7-4e6c-9f04-974adef4a1bd)
+![WhatsApp Image 2025-12-04 at 13 54 06_56435e53](https://github.com/user-attachments/assets/2b16468e-cfcd-4656-bbad-7547bf607437)
+![WhatsApp Image 2025-12-04 at 13 50 01_ad0e97d3](https://github.com/user-attachments/assets/05d28ad6-c99d-4fc9-a45c-9f6c155a5280)
+
 
 Tabel Pembagian Tugas:\
 <img width="1894" height="406" alt="image" src="https://github.com/user-attachments/assets/c952958f-fbb8-4307-947c-2fa6266cff07" />
