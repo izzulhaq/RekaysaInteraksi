@@ -1,23 +1,36 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+// --- TAMBAHAN 1: Import Firebase ---
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart'; 
+
 import 'app/routes/app_pages.dart';
 
-void main() {
+// --- TAMBAHAN 2: Ubah main menjadi async ---
+void main() async {
+  // --- TAMBAHAN 3: Pastikan binding flutter siap ---
+  WidgetsFlutterBinding.ensureInitialized();
+
+  // --- TAMBAHAN 4: Inisialisasi Firebase ---
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+
   runApp(
     GetMaterialApp(
       title: "Lunchify",
-      debugShowCheckedModeBanner: false, // Menghilangkan banner debug
+      debugShowCheckedModeBanner: false, 
       
       // Konfigurasi Routing GetX
       initialRoute: AppPages.INITIAL,
       getPages: AppPages.routes,
       
-      // Tema Aplikasi (Opsional)
+      // Tema Aplikasi
       theme: ThemeData(
         primarySwatch: Colors.blue,
         scaffoldBackgroundColor: Colors.white,
-        fontFamily: 'Poppins', // Pastikan font sudah didaftarkan di pubspec.yaml jika pakai custom font
+        fontFamily: 'Poppins', 
       ),
     ),
   );

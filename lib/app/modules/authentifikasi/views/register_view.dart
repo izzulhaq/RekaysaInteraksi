@@ -76,26 +76,29 @@ class RegisterView extends GetView<AuthentifikasiController> {
                   const SizedBox(height: 20),
 
                   // Button Add to Contact
-                  SizedBox(
+                  Obx(() => SizedBox(
                     width: double.infinity,
                     height: 55,
                     child: ElevatedButton(
-                      onPressed: () {
-                        // Logika Register di sini
-                        print("Data: ${controller.fullNameC.text}");
-                      },
+                      onPressed: controller.isLoading.value
+                          ? null
+                          : () {
+                              controller.registerUser(); // Panggil fungsi Register Firebase
+                            },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: primaryBlue,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10),
                         ),
                       ),
-                      child: const Text(
-                        "Add to contact",
-                        style: TextStyle(fontSize: 18, color: Colors.white),
-                      ),
+                      child: controller.isLoading.value
+                          ? const CircularProgressIndicator(color: Colors.white)
+                          : const Text(
+                              "Add to contact (Register)",
+                              style: TextStyle(fontSize: 18, color: Colors.white),
+                            ),
                     ),
-                  ),
+                  )),
                   const SizedBox(height: 30),
                 ],
               ),

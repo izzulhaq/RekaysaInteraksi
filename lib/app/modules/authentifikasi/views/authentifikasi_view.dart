@@ -74,26 +74,29 @@ class AuthentifikasiView extends GetView<AuthentifikasiController> {
                   const SizedBox(height: 50),
 
                   // Login Button
-                  SizedBox(
+                  Obx(() => SizedBox(
                     width: double.infinity,
                     height: 55,
                     child: ElevatedButton(
-                      onPressed: () {
-                         // Arahkan ke Home
-                         Get.offAllNamed('/home'); 
-                      },
+                      onPressed: controller.isLoading.value 
+                          ? null // Matikan tombol saat loading
+                          : () {
+                              controller.loginUser(); // Panggil fungsi Login Firebase
+                            },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: primaryBlue,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10),
                         ),
                       ),
-                      child: const Text(
-                        "Login",
-                        style: TextStyle(fontSize: 18, color: Colors.white),
-                      ),
+                      child: controller.isLoading.value
+                          ? const CircularProgressIndicator(color: Colors.white) // Tampilkan loading
+                          : const Text(
+                              "Login",
+                              style: TextStyle(fontSize: 18, color: Colors.white),
+                            ),
                     ),
-                  ),
+                  )),
                   
                   const SizedBox(height: 20),
                   
