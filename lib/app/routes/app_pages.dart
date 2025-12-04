@@ -16,7 +16,7 @@ class AppPages {
   AppPages._();
 
   // Route awal saat aplikasi dibuka
-  static const INITIAL = Routes.AUTHENTIFIKASI;
+  static const INITIAL = Routes.HOME;
 
   static final routes = [
     GetPage(

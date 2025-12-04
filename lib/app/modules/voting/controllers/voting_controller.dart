@@ -29,6 +29,13 @@ class VotingController extends GetxController {
       distanceMinutes: 10,
       price: 45000,
     ),
+    FoodOption(
+      id: 'rawon',
+      name: 'Rawon Lurus',
+      rating: 4.1,
+      distanceMinutes: 18,
+      price: 15000,
+    ),
   ].obs;
 
   final votes = <String, String>{}.obs; // userId -> foodId
