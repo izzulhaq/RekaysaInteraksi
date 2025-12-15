@@ -12,7 +12,7 @@ class HomeController extends GetxController {
 
   // Fungsi navigasi dummy (bisa Anda hubungkan dengan routes nanti)
   void goToVotingFood() {
-    print("Navigasi ke Voting Food");
+    Get.toNamed(Routes.VOTING_FOOD);
     // Get.toNamed(Routes.VOTING_FOOD);
   }
 

@@ -3,7 +3,8 @@ import 'package:lunchify/app/modules/authentifikasi/bindings/authentifikasi_bind
 import 'package:lunchify/app/modules/authentifikasi/views/authentifikasi_view.dart';
 import 'package:lunchify/app/modules/rekomendasi/bindings/rekomendasi_binding.dart';
 import 'package:lunchify/app/modules/rekomendasi/views/rekomendasi_view.dart';
-import 'package:lunchify/app/modules/voting/screens/voting_choice_screen.dart';
+import 'package:lunchify/app/modules/votingFood/bindings/voting_food_binfing.dart';
+import 'package:lunchify/app/modules/votingFood/views/voting_food_view.dart';
 
 // Import Home Module
 import '../modules/home/bindings/home_binding.dart';
@@ -32,11 +33,11 @@ class AppPages {
       page: () => const AuthentifikasiView(),
       binding: AuthentifikasiBinding(),
     ),
-    // GetPage(
-    //   name: Routes.VOTING_FOOD,
-    //   page: () => const VotingChoiceScreen(),
-    //   binding: VotingChoiceScreen(),
-    // ), 
+    GetPage(
+      name: Routes.VOTING_FOOD,
+      page: () => const VotingFoodView(),
+      binding: VotingFoodBinding(),
+    ), 
     // GetPage(
     //   name: _Paths.CEK_KERAMAIAN,
     //   page: () => const CekKeramaianView(),
