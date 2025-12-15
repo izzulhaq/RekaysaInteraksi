@@ -5,9 +5,17 @@
 *.swp
 .DS_Store
 .atom/
+<<<<<<< HEAD
 .buildlog/
 .history
 .svn/
+=======
+.build/
+.buildlog/
+.history
+.svn/
+.swiftpm/
+>>>>>>> 47f295d0c36afbd07332575b8efa84a73b524d73
 migrate_working_dir/
 
 # IntelliJ related
@@ -25,11 +33,18 @@ migrate_working_dir/
 **/doc/api/
 **/ios/Flutter/.last_build_id
 .dart_tool/
+<<<<<<< HEAD
 .flutter-plugins
+=======
+>>>>>>> 47f295d0c36afbd07332575b8efa84a73b524d73
 .flutter-plugins-dependencies
 .pub-cache/
 .pub/
 /build/
+<<<<<<< HEAD
+=======
+/coverage/
+>>>>>>> 47f295d0c36afbd07332575b8efa84a73b524d73
 
 # Symbolication related
 app.*.symbols

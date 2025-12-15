@@ -90,12 +90,21 @@ BEGIN
         BLOCK "040904e4"
         BEGIN
             VALUE "CompanyName", "com.example" "\0"
+<<<<<<< HEAD
             VALUE "FileDescription", "lunchify" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
             VALUE "InternalName", "lunchify" "\0"
             VALUE "LegalCopyright", "Copyright (C) 2025 com.example. All rights reserved." "\0"
             VALUE "OriginalFilename", "lunchify.exe" "\0"
             VALUE "ProductName", "lunchify" "\0"
+=======
+            VALUE "FileDescription", "voting" "\0"
+            VALUE "FileVersion", VERSION_AS_STRING "\0"
+            VALUE "InternalName", "voting" "\0"
+            VALUE "LegalCopyright", "Copyright (C) 2025 com.example. All rights reserved." "\0"
+            VALUE "OriginalFilename", "voting.exe" "\0"
+            VALUE "ProductName", "voting" "\0"
+>>>>>>> 47f295d0c36afbd07332575b8efa84a73b524d73
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END

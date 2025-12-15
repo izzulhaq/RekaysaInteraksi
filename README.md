@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # lunchify
 
 Lunchify adalah aplikasi mobile yang dirancang khusus untuk membantu kelompok (teman, rekan kerja, keluarga) mengambil keputusan tempat makan dengan cepat, demokratis, dan tanpa drama. Tidak lagi ada kebingungan "Makan di mana?" yang memakan waktu berjam-jam.
@@ -24,3 +25,21 @@ Low Fidelity Prototype:\
 
 Tabel Pembagian Tugas:\
 <img width="1894" height="406" alt="image" src="https://github.com/user-attachments/assets/c952958f-fbb8-4307-947c-2fa6266cff07" />
+=======
+# voting
+
+A new Flutter project.
+
+## Getting Started
+
+This project is a starting point for a Flutter application.
+
+A few resources to get you started if this is your first Flutter project:
+
+- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
+- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+
+For help getting started with Flutter development, view the
+[online documentation](https://docs.flutter.dev/), which offers tutorials,
+samples, guidance on mobile development, and a full API reference.
+>>>>>>> 47f295d0c36afbd07332575b8efa84a73b524d73

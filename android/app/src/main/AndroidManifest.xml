@@ -1,6 +1,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <application
+<<<<<<< HEAD
         android:label="lunchify"
+=======
+        android:label="voting"
+>>>>>>> 47f295d0c36afbd07332575b8efa84a73b524d73
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
