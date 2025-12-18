@@ -1,24 +1,13 @@
 # Project-level configuration.
-<<<<<<< HEAD
 cmake_minimum_required(VERSION 3.10)
-=======
-cmake_minimum_required(VERSION 3.13)
->>>>>>> 47f295d0c36afbd07332575b8efa84a73b524d73
 project(runner LANGUAGES CXX)
 
 # The name of the executable created for the application. Change this to change
 # the on-disk name of your application.
-<<<<<<< HEAD
 set(BINARY_NAME "lunchify")
 # The unique GTK application identifier for this application. See:
 # https://wiki.gnome.org/HowDoI/ChooseApplicationID
 set(APPLICATION_ID "com.example.lunchify")
-=======
-set(BINARY_NAME "voting")
-# The unique GTK application identifier for this application. See:
-# https://wiki.gnome.org/HowDoI/ChooseApplicationID
-set(APPLICATION_ID "com.example.voting")
->>>>>>> 47f295d0c36afbd07332575b8efa84a73b524d73
 
 # Explicitly opt in to modern CMake behaviors to avoid warnings with recent
 # versions of CMake.
@@ -65,7 +54,6 @@ add_subdirectory(${FLUTTER_MANAGED_DIR})
 find_package(PkgConfig REQUIRED)
 pkg_check_modules(GTK REQUIRED IMPORTED_TARGET gtk+-3.0)
 
-<<<<<<< HEAD
 add_definitions(-DAPPLICATION_ID="${APPLICATION_ID}")
 
 # Define the application target. To change its name, change BINARY_NAME above,
@@ -85,10 +73,6 @@ apply_standard_settings(${BINARY_NAME})
 # Add dependency libraries. Add any application-specific dependencies here.
 target_link_libraries(${BINARY_NAME} PRIVATE flutter)
 target_link_libraries(${BINARY_NAME} PRIVATE PkgConfig::GTK)
-=======
-# Application build; see runner/CMakeLists.txt.
-add_subdirectory("runner")
->>>>>>> 47f295d0c36afbd07332575b8efa84a73b524d73
 
 # Run the Flutter tool portions of the build. This must not be removed.
 add_dependencies(${BINARY_NAME} flutter_assemble)

@@ -15,7 +15,7 @@ class HomeView extends GetView<HomeController> {
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
-        top: false, // Membiarkan header biru menutupi status bar jika diinginkan
+        top: false,
         child: SingleChildScrollView(
           child: Column(
             children: [
@@ -30,15 +30,15 @@ class HomeView extends GetView<HomeController> {
                     // Menu Buttons
                     _buildMenuButton(
                       title: "Voting Food",
-                      icon: Icons.assignment_turned_in, // Icon checklist
+                      icon: Icons.assignment_turned_in,
                       onTap: controller.goToVotingFood,
                     ),
-                    const SizedBox(height: 15),
-                    _buildMenuButton(
-                      title: "Cek Keramaian\nResto",
-                      icon: Icons.groups, // Icon group/people
-                      onTap: controller.goToCekKeramaian,
-                    ),
+                    // const SizedBox(height: 15),
+                    // _buildMenuButton(
+                    //   title: "Cek Keramaian\nResto",
+                    //   icon: Icons.groups, // Icon group/people
+                    //   onTap: controller.goToCekKeramaian,
+                    // ),
                     const SizedBox(height: 15),
                     _buildMenuButton(
                       title: "Rekomendasi\nMakanan",

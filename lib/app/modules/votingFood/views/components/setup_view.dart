@@ -52,7 +52,7 @@ class SetupView extends GetView<VotingFoodController> {
             const SizedBox(height: 25),
 
             // --- BAGIAN VETO ---
-            const Text("Veto (Filter Makanan yg dihindari)", style: TextStyle(fontWeight: FontWeight.bold)),
+            const Text("Filter Makanan yg dihindari", style: TextStyle(fontWeight: FontWeight.bold)),
             const SizedBox(height: 10),
             TextField(
               controller: controller.vetoC,
@@ -79,7 +79,7 @@ class SetupView extends GetView<VotingFoodController> {
                 ),
                 icon: const Icon(Icons.group_add, color: Colors.white),
                 label: const Text(
-                  "Undang Tim & Mulai Vote", 
+                  "Mulai Vote", 
                   style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold)
                 ),
               ),

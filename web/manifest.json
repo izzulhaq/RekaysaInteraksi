@@ -1,11 +1,6 @@
 {
-<<<<<<< HEAD
     "name": "lunchify",
     "short_name": "lunchify",
-=======
-    "name": "voting",
-    "short_name": "voting",
->>>>>>> 47f295d0c36afbd07332575b8efa84a73b524d73
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

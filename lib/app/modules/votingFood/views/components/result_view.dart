@@ -45,9 +45,13 @@ class ResultView extends GetView<VotingFoodController> {
                   width: double.infinity,
                   height: 50,
                   child: ElevatedButton(
-                    onPressed: () {},
-                    style: ElevatedButton.styleFrom(backgroundColor: primaryBlue, shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10))),
-                    child: const Text("Yuk, Berangkat!", style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold)),
+                    onPressed: controller.launchWinnerMap, 
+                    
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: primaryBlue, 
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10))
+                    ), 
+                    child: const Text("Cek Lokasi!", style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold)),
                   ),
                 ),
               ],
@@ -59,7 +63,7 @@ class ResultView extends GetView<VotingFoodController> {
           const Spacer(),
           TextButton(
             onPressed: controller.resetDemo,
-            child: const Text("Reset Voting (Hapus Data)", style: TextStyle(color: Colors.red)),
+            child: const Text("Vote ulang", style: TextStyle(color: Colors.red)),
           )
         ],
       ),

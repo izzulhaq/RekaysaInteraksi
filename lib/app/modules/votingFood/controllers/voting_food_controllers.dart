@@ -5,6 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:http/http.dart' as http;
 import '../../../data/models/food_option.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 enum VotingStep { setup, voting, waiting, result }
 
@@ -45,13 +46,10 @@ class VotingFoodController extends GetxController {
     super.onClose();
   }
 
-  // --- FUNGSI 1: AMBIL DATA DARI GOOGLE PLACES API (LIVE) ---
   Future<void> fetchFromGoogle(String queryLokasi) async {
-    // ⚠️ TEMPEL API KEY ANDA DI SINI (Ganti teks di bawah)
     String apiKey = "AIzaSyDE0dwP4QKBE7pRUuj9LVV33ha902p8_3Y"; 
 
-    // Validasi sederhana agar tidak lupa
-    if (apiKey == "AIzaSyDE0dwP4QKBE7pRUuj9LVV33ha902p8_3Y" || apiKey.isEmpty) {
+    if (apiKey.isEmpty) {
        Get.snackbar("Error Config", "Masukkan API Key Google di Controller dulu!");
        return;
     }
@@ -60,7 +58,7 @@ class VotingFoodController extends GetxController {
 
     try {
       isLoading.value = true;
-      options.clear(); // Bersihkan data lama
+      options.clear();
 
       var response = await http.post(
         Uri.parse(url),
@@ -72,8 +70,8 @@ class VotingFoodController extends GetxController {
         },
         body: jsonEncode({
           "textQuery": "Restoran di $queryLokasi", 
-          "minRating": 4.0, // Filter minimal bintang 4 dari Google
-          "maxResultCount": 10, // Ambil 10 restoran saja agar tidak bingung
+          "minRating": 4.0,
+          "maxResultCount": 10,
         }),
       );
 
@@ -120,7 +118,7 @@ class VotingFoodController extends GetxController {
 
   // --- FUNGSI 2: MULAI SESI & FILTER VETO ---
   void startVotingSession() async {
-    // 1. Validasi Input Lokasi
+    
     if (addressC.text.isEmpty) {
       Get.snackbar("Error", "Harap isi lokasi area makan terlebih dahulu");
       return;
@@ -245,5 +243,24 @@ class VotingFoodController extends GetxController {
     vetoC.clear();
     options.clear();
     displayedOptions.clear();
+  }
+  void launchWinnerMap() async {
+    final win = winner; // Ambil data pemenang
+    if (win == null) return;
+
+    // Susun URL Google Maps
+    // Format: https://www.google.com/maps/search/?api=1&query=Nama+Restoran
+    final Uri url = Uri.parse(
+      "https://www.google.com/maps/search/?api=1&query=${Uri.encodeComponent(win.name)}"
+    );
+
+    try {
+      // Coba buka aplikasi Maps (External Application)
+      if (!await launchUrl(url, mode: LaunchMode.externalApplication)) {
+        Get.snackbar("Error", "Tidak bisa membuka aplikasi Maps");
+      }
+    } catch (e) {
+      Get.snackbar("Error", "Terjadi kesalahan saat membuka Maps");
+    }
   }
 }

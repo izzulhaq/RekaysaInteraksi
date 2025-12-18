@@ -1,18 +1,10 @@
 # Project-level configuration.
 cmake_minimum_required(VERSION 3.14)
-<<<<<<< HEAD
 project(lunchify LANGUAGES CXX)
 
 # The name of the executable created for the application. Change this to change
 # the on-disk name of your application.
 set(BINARY_NAME "lunchify")
-=======
-project(voting LANGUAGES CXX)
-
-# The name of the executable created for the application. Change this to change
-# the on-disk name of your application.
-set(BINARY_NAME "voting")
->>>>>>> 47f295d0c36afbd07332575b8efa84a73b524d73
 
 # Explicitly opt in to modern CMake behaviors to avoid warnings with recent
 # versions of CMake.

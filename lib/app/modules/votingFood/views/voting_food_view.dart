@@ -21,7 +21,15 @@ class VotingFoodView extends GetView<VotingFoodController> {
         backgroundColor: primaryBlue,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back, color: Colors.white),
-          onPressed: () => Get.back(),
+          onPressed: () {
+            if (controller.currentStep.value == VotingStep.setup) {
+              Get.back();
+            } else if (controller.currentStep.value == VotingStep.voting) {
+              controller.currentStep.value = VotingStep.setup;
+            } else {
+              Get.back(); 
+            }
+          },
         ),
         // Judul AppBar berubah dinamis sesuai step di controller
         title: Obx(() {
