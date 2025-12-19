@@ -1,128 +1,165 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../controllers/authentifikasi_controller.dart';
-import 'register_view.dart'; // Kita akan buat file ini setelahnya
+import 'register_view.dart';
 
 class AuthentifikasiView extends GetView<AuthentifikasiController> {
   const AuthentifikasiView({Key? key}) : super(key: key);
 
-  final Color primaryBlue = const Color(0xFF004AAD);
+  // Tema Warna Deep Navy agar konsisten dengan HomeView
+  final Color primaryColor = const Color(0xFF1A237E);
+  final Color accentColor = const Color(0xFF5C6BC0);
+  final Color backgroundColor = const Color(0xFFF5F7FA);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: backgroundColor,
       body: SingleChildScrollView(
         child: Column(
           children: [
-            // HEADER (Sama seperti Home)
+            // HEADER (Overlapping style seperti HomeView)
             _buildHeader(),
             
-            const SizedBox(height: 50),
+            const SizedBox(height: 60),
 
-            // FORM LOGIN
+            // FORM LOGIN (Dibungkus Card agar modern)
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 30),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  // Username Field
-                  _buildLabel("Username"),
-                  TextField(
-                    controller: controller.loginUserC,
-                    decoration: InputDecoration(
-                      hintText: "PRAJESH SHAKYA", // Placeholder dummy
-                      hintStyle: TextStyle(color: Colors.grey[400]),
-                      suffixIcon: Icon(Icons.person, color: primaryBlue),
-                      enabledBorder: const UnderlineInputBorder(
-                        borderSide: BorderSide(color: Colors.grey),
-                      ),
-                      focusedBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(color: primaryBlue, width: 2),
-                      ),
+              child: Container(
+                padding: const EdgeInsets.all(25),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(25),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.05),
+                      blurRadius: 15,
+                      offset: const Offset(0, 5),
                     ),
-                  ),
-                  
-                  const SizedBox(height: 30),
-
-                  // Password Field
-                  _buildLabel("Password"),
-                  Obx(() => TextField(
-                    controller: controller.loginPassC,
-                    obscureText: controller.isPasswordHidden.value,
-                    decoration: InputDecoration(
-                      hintText: "*****************",
-                      hintStyle: TextStyle(color: Colors.grey[400]),
-                      suffixIcon: IconButton(
-                        icon: Icon(
-                          controller.isPasswordHidden.value 
-                            ? Icons.visibility_off 
-                            : Icons.visibility,
-                          color: primaryBlue,
+                  ],
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    // Username Field
+                    _buildLabel("Username"),
+                    TextField(
+                      controller: controller.loginUserC,
+                      decoration: InputDecoration(
+                        hintText: "Enter your username",
+                        hintStyle: TextStyle(color: Colors.grey[400], fontSize: 14),
+                        suffixIcon: Icon(Icons.person_outline, color: primaryColor),
+                        enabledBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(color: Colors.grey.shade300),
                         ),
-                        onPressed: controller.togglePasswordVisibility,
-                      ),
-                      enabledBorder: const UnderlineInputBorder(
-                        borderSide: BorderSide(color: Colors.grey),
-                      ),
-                      focusedBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(color: primaryBlue, width: 2),
-                      ),
-                    ),
-                  )),
-
-                  const SizedBox(height: 50),
-
-                  // Login Button
-                  Obx(() => SizedBox(
-                    width: double.infinity,
-                    height: 55,
-                    child: ElevatedButton(
-                      onPressed: controller.isLoading.value 
-                          ? null // Matikan tombol saat loading
-                          : () {
-                              controller.loginUser(); // Panggil fungsi Login Firebase
-                            },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: primaryBlue,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
+                        focusedBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(color: primaryColor, width: 2),
                         ),
                       ),
-                      child: controller.isLoading.value
-                          ? const CircularProgressIndicator(color: Colors.white) // Tampilkan loading
-                          : const Text(
-                              "Login",
-                              style: TextStyle(fontSize: 18, color: Colors.white),
-                            ),
                     ),
-                  )),
-                  
-                  const SizedBox(height: 20),
-                  
-                  // Forgot Password & Link ke Register
-                  Center(
-                    child: Column(
-                      children: [
-                        Text("Forgot Password ?", style: TextStyle(color: Colors.grey[600])),
-                        const SizedBox(height: 10),
-                        // Tombol Text untuk ke halaman Register
-                        GestureDetector(
-                          onTap: () => Get.to(() => const RegisterView()),
-                          child: Text(
-                            "Don't have an account? Register",
-                            style: TextStyle(
-                              color: primaryBlue, 
-                              fontWeight: FontWeight.bold
+                    
+                    const SizedBox(height: 30),
+
+                    // Password Field
+                    _buildLabel("Password"),
+                    Obx(() => TextField(
+                      controller: controller.loginPassC,
+                      obscureText: controller.isPasswordHidden.value,
+                      decoration: InputDecoration(
+                        hintText: "••••••••••••",
+                        hintStyle: TextStyle(color: Colors.grey[400]),
+                        suffixIcon: IconButton(
+                          icon: Icon(
+                            controller.isPasswordHidden.value 
+                              ? Icons.visibility_off_outlined 
+                              : Icons.visibility_outlined,
+                            color: primaryColor,
+                          ),
+                          onPressed: controller.togglePasswordVisibility,
+                        ),
+                        enabledBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(color: Colors.grey.shade300),
+                        ),
+                        focusedBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(color: primaryColor, width: 2),
+                        ),
+                      ),
+                    )),
+
+                    const SizedBox(height: 40),
+
+                    // Login Button
+                    Obx(() => SizedBox(
+                      width: double.infinity,
+                      height: 55,
+                      child: ElevatedButton(
+                        onPressed: controller.isLoading.value 
+                            ? null 
+                            : () => controller.loginUser(),
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: primaryColor,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(15),
+                          ),
+                          elevation: 4,
+                          shadowColor: primaryColor.withOpacity(0.4),
+                        ),
+                        child: controller.isLoading.value
+                            ? const CircularProgressIndicator(color: Colors.white)
+                            : const Text(
+                                "LOGIN",
+                                style: TextStyle(
+                                  fontSize: 16, 
+                                  color: Colors.white, 
+                                  fontWeight: FontWeight.bold,
+                                  letterSpacing: 1.5,
+                                ),
+                              ),
+                      ),
+                    )),
+                    
+                    const SizedBox(height: 25),
+                    
+                    // Register Link
+                    Center(
+                      child: Column(
+                        children: [
+                          TextButton(
+                            onPressed: () {},
+                            child: Text(
+                              "Forgot Password?", 
+                              style: TextStyle(color: Colors.grey[600], fontSize: 13),
                             ),
                           ),
-                        ),
-                      ],
+                          const SizedBox(height: 5),
+                          GestureDetector(
+                            onTap: () => Get.to(() => const RegisterView()),
+                            child: RichText(
+                              text: TextSpan(
+                                text: "Don't have an account? ",
+                                style: TextStyle(color: Colors.grey[600], fontSize: 14),
+                                children: [
+                                  TextSpan(
+                                    text: "Register",
+                                    style: TextStyle(
+                                      color: primaryColor, 
+                                      fontWeight: FontWeight.bold,
+                                      decoration: TextDecoration.underline,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
+            const SizedBox(height: 40),
           ],
         ),
       ),
@@ -131,46 +168,86 @@ class AuthentifikasiView extends GetView<AuthentifikasiController> {
 
   Widget _buildLabel(String text) {
     return Text(
-      text,
-      style: const TextStyle(
-        fontSize: 16,
-        color: Colors.black87,
-        fontWeight: FontWeight.w500,
+      text.toUpperCase(),
+      style: TextStyle(
+        fontSize: 12,
+        color: primaryColor.withOpacity(0.7),
+        fontWeight: FontWeight.bold,
+        letterSpacing: 1.1,
       ),
     );
   }
 
-  // Header Melengkung (Reusable)
   Widget _buildHeader() {
     return Stack(
+      clipBehavior: Clip.none,
       alignment: Alignment.bottomCenter,
       children: [
         Container(
-          height: 280, // Sedikit lebih tinggi untuk Login
-          margin: const EdgeInsets.only(bottom: 40),
+          height: 250,
+          width: double.infinity,
           decoration: BoxDecoration(
-            color: primaryBlue,
+            color: primaryColor,
+            gradient: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: [primaryColor, const Color(0xFF3949AB)],
+            ),
             borderRadius: const BorderRadius.only(
-              bottomLeft: Radius.elliptical(250, 100), // Lengkungan curam
-              bottomRight: Radius.elliptical(250, 100),
+              bottomLeft: Radius.circular(50),
+              bottomRight: Radius.circular(50),
+            ),
+          ),
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: const [
+                Text(
+                  "Welcome Back",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 28,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                SizedBox(height: 10),
+                Text(
+                  "Login to continue using Lunchify",
+                  style: TextStyle(color: Colors.white70, fontSize: 14),
+                ),
+              ],
             ),
           ),
         ),
+        // Overlapping Logo Circle
         Positioned(
-          bottom: 0,
+          bottom: -45,
           child: Container(
-            width: 110,
-            height: 110,
-            decoration: const BoxDecoration(
+            width: 100,
+            height: 100,
+            decoration: BoxDecoration(
               color: Colors.white,
               shape: BoxShape.circle,
-              boxShadow: [BoxShadow(color: Colors.black12, blurRadius: 10)],
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withOpacity(0.1),
+                  blurRadius: 15,
+                  offset: const Offset(0, 8),
+                )
+              ],
             ),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                 Icon(Icons.restaurant_menu, size: 40, color: primaryBlue),
-                 Text("LUNCHIFY", style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold, color: primaryBlue))
+                Icon(Icons.restaurant_menu, size: 35, color: primaryColor),
+                Text(
+                  "LUNCHIFY", 
+                  style: TextStyle(
+                    fontSize: 10, 
+                    fontWeight: FontWeight.bold, 
+                    color: primaryColor
+                  ),
+                )
               ],
             ),
           ),
