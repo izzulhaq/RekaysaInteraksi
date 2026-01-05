@@ -147,7 +147,32 @@ class AuthentifikasiController extends GetxController {
       isLoading.value = false;
     }
   }
+  // --- TAMBAHKAN INI DI DALAM AuthentifikasiController ---
   
+  Future<void> resetPassword(String email) async {
+    if (email.isEmpty) {
+      Get.snackbar("Error", "Masukkan email anda terlebih dahulu", backgroundColor: Colors.red, colorText: Colors.white);
+      return;
+    }
+
+    try {
+      isLoading.value = true;
+      await _auth.sendPasswordResetEmail(email: email);
+      
+      Get.back(); // Tutup Modal/Dialog
+      Get.snackbar(
+        "Email Terkirim", 
+        "Cek inbox/spam email anda untuk mereset password", 
+        backgroundColor: Colors.green, 
+        colorText: Colors.white,
+        duration: const Duration(seconds: 4)
+      );
+    } on FirebaseAuthException catch (e) {
+      Get.snackbar("Gagal", e.message ?? "Terjadi kesalahan", backgroundColor: Colors.red, colorText: Colors.white);
+    } finally {
+      isLoading.value = false;
+    }
+  }
   // Fungsi Logout (Tambahan)
   void logout() async {
     await _auth.signOut();

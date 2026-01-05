@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
+import 'package:url_launcher/url_launcher.dart';
 
 class ExploreController extends GetxController {
   // --- STATE ---
@@ -71,6 +72,24 @@ class ExploreController extends GetxController {
       print("SYSTEM ERROR: $e");
     } finally {
       isLoading.value = false;
+    }
+  }
+  void openMap(String address, String name) async {
+    // Kita buat query pencarian yang spesifik: "Nama Restoran, Alamat"
+    // Encode komponen URL agar karakter spesial (spasi, koma) aman
+    String query = Uri.encodeComponent("$name, $address");
+    
+    // URL Scheme untuk Google Maps
+    // Menggunakan query search agar lebih akurat mencari lokasi
+    Uri googleMapsUrl = Uri.parse("https://www.google.com/maps/search/?api=1&query=$query");
+
+    try {
+      // Coba buka aplikasi eksternal (Google Maps App / Browser)
+      if (!await launchUrl(googleMapsUrl, mode: LaunchMode.externalApplication)) {
+        Get.snackbar("Error", "Tidak dapat membuka aplikasi peta");
+      }
+    } catch (e) {
+      Get.snackbar("Error", "Terjadi kesalahan: $e");
     }
   }
 }

@@ -6,7 +6,7 @@ import 'register_view.dart';
 class AuthentifikasiView extends GetView<AuthentifikasiController> {
   const AuthentifikasiView({Key? key}) : super(key: key);
 
-  // Tema Warna Deep Navy agar konsisten dengan RegisterView
+  // Tema Warna Deep Navy agar konsisten
   final Color primaryColor = const Color(0xFF1A237E);
   final Color accentColor = const Color(0xFF5C6BC0);
   final Color backgroundColor = const Color(0xFFF5F7FA);
@@ -23,7 +23,7 @@ class AuthentifikasiView extends GetView<AuthentifikasiController> {
             
             const SizedBox(height: 60),
 
-            // FORM LOGIN (Dibungkus Card agar modern)
+            // FORM LOGIN
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 30),
               child: Container(
@@ -42,15 +42,15 @@ class AuthentifikasiView extends GetView<AuthentifikasiController> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    // --- EMAIL FIELD (Diupdate dari Username) ---
+                    // --- EMAIL FIELD ---
                     _buildLabel("Email Address"),
                     TextField(
-                      controller: controller.loginEmailC, // Pakai controller Email
-                      keyboardType: TextInputType.emailAddress, // Keyboard khusus email
+                      controller: controller.loginEmailC,
+                      keyboardType: TextInputType.emailAddress,
                       decoration: InputDecoration(
                         hintText: "Enter your email",
                         hintStyle: TextStyle(color: Colors.grey[400], fontSize: 14),
-                        suffixIcon: Icon(Icons.email_outlined, color: primaryColor), // Icon Email
+                        suffixIcon: Icon(Icons.email_outlined, color: primaryColor),
                         enabledBorder: UnderlineInputBorder(
                           borderSide: BorderSide(color: Colors.grey.shade300),
                         ),
@@ -126,14 +126,17 @@ class AuthentifikasiView extends GetView<AuthentifikasiController> {
                     Center(
                       child: Column(
                         children: [
-                          TextButton(
-                            onPressed: () {},
-                            child: Text(
-                              "Forgot Password?", 
-                              style: TextStyle(color: Colors.grey[600], fontSize: 13),
-                            ),
-                          ),
+                          // TOMBOL FORGOT PASSWORD (SUDAH DIPERBAIKI)
+                          // TextButton(
+                          //   onPressed: () => _showForgotPasswordModal(context),
+                          //   child: Text(
+                          //     "Forgot Password?", 
+                          //     style: TextStyle(color: Colors.grey[600], fontSize: 13),
+                          //   ),
+                          // ),
+                          
                           const SizedBox(height: 5),
+                          
                           GestureDetector(
                             onTap: () => Get.to(() => const RegisterView()),
                             child: RichText(
@@ -167,6 +170,77 @@ class AuthentifikasiView extends GetView<AuthentifikasiController> {
     );
   }
 
+  // --- FUNGSI MODAL FORGOT PASSWORD ---
+  void _showForgotPasswordModal(BuildContext context) {
+    // Controller lokal untuk input email di modal
+    // Kita isi default-nya dengan apa yang sudah diketik di login (jika ada)
+    TextEditingController resetEmailC = TextEditingController(text: controller.loginEmailC.text);
+
+    Get.bottomSheet(
+      Container(
+        padding: const EdgeInsets.all(30),
+        decoration: const BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(25),
+            topRight: Radius.circular(25),
+          ),
+        ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min, // Agar tinggi menyesuaikan konten
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            // Gagang kecil
+            Center(
+              child: Container(
+                width: 40, height: 4, 
+                decoration: BoxDecoration(color: Colors.grey[300], borderRadius: BorderRadius.circular(10))
+              ),
+            ),
+            const SizedBox(height: 20),
+            
+            Text("Reset Password", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: primaryColor)),
+            const SizedBox(height: 10),
+            Text("Masukkan email terdaftar Anda. Kami akan mengirimkan link untuk mereset password.", style: TextStyle(color: Colors.grey[600], fontSize: 14)),
+            
+            const SizedBox(height: 20),
+            
+            // Input Email
+            TextField(
+              controller: resetEmailC,
+              keyboardType: TextInputType.emailAddress,
+              decoration: InputDecoration(
+                prefixIcon: Icon(Icons.email, color: primaryColor),
+                hintText: "Email Address",
+                filled: true,
+                fillColor: backgroundColor,
+                border: OutlineInputBorder(borderRadius: BorderRadius.circular(15), borderSide: BorderSide.none),
+              ),
+            ),
+            
+            const SizedBox(height: 20),
+            
+            // Tombol Kirim
+            SizedBox(
+              width: double.infinity,
+              height: 50,
+              child: ElevatedButton(
+                onPressed: () => controller.resetPassword(resetEmailC.text),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: primaryColor,
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+                ),
+                child: const Text("KIRIM LINK RESET", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
+              ),
+            ),
+            const SizedBox(height: 20), // Spasi bawah keyboard
+          ],
+        ),
+      ),
+      isScrollControlled: true, // Agar modal naik jika keyboard muncul
+    );
+  }
+
   Widget _buildLabel(String text) {
     return Text(
       text.toUpperCase(),
@@ -184,7 +258,6 @@ class AuthentifikasiView extends GetView<AuthentifikasiController> {
       clipBehavior: Clip.none,
       alignment: Alignment.bottomCenter,
       children: [
-        // ... (Bagian Background Biru Tetap Sama) ...
         Container(
           height: 250,
           width: double.infinity,
@@ -222,7 +295,7 @@ class AuthentifikasiView extends GetView<AuthentifikasiController> {
           ),
         ),
         
-        // --- BAGIAN LOGO YANG DIGANTI ---
+        // --- LOGO (Sesuai kode terakhir Anda) ---
         Positioned(
           bottom: -45,
           child: Container(
@@ -239,13 +312,10 @@ class AuthentifikasiView extends GetView<AuthentifikasiController> {
                 )
               ],
             ),
-            // Padding agar gambar tidak terlalu mepet pinggir lingkaran
             padding: const EdgeInsets.all(15), 
-            
-            // GANTI Column/Icon DENGAN INI:
             child: Image.asset(
-              "assets/LogoAJ.png", // Sesuaikan nama file Anda
-              fit: BoxFit.contain, // Agar gambar pas di tengah
+              "assets/LogoAJ.png", 
+              fit: BoxFit.contain, 
             ),
           ),
         ),
