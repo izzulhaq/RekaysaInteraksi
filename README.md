@@ -1,4 +1,5 @@
-<img width="1531" height="1530" alt="Logo" src="https://github.com/user-attachments/assets/568f25f7-24d6-4a08-888c-85c2dd1762a2" />
+<img width="200" alt="Logo" src="https://github.com/user-attachments/assets/568f25f7-24d6-4a08-888c-85c2dd1762a2"/>
+
 # lunchify
 
 
