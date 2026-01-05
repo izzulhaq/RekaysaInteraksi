@@ -13,75 +13,85 @@ class SetupView extends GetView<VotingFoodController> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text(
-              "Atur filter untuk grupmu. Waktu vote 5 Menit", 
-              style: TextStyle(color: Colors.grey)
+            const Center(
+              child: Icon(Icons.groups_rounded, size: 80, color: Color(0xFF004AAD)),
             ),
-            const SizedBox(height: 30),
+            const SizedBox(height: 20),
             
-            // --- BAGIAN LOKASI (MANUAL INPUT) ---
-            const Text("Lokasi Area Makan", style: TextStyle(fontWeight: FontWeight.bold)),
+            // --- BAGIAN 1: HOST (BUAT ROOM) ---
+            const Text("BUAT ROOM BARU", style: TextStyle(fontWeight: FontWeight.bold, color: Color(0xFF004AAD))),
             const SizedBox(height: 10),
             
+            // Input Lokasi
             TextField(
-              controller: controller.addressC, // Menggunakan controller text
+              controller: controller.addressC,
               decoration: InputDecoration(
-                hintText: "Masukkan area (cth: Sekitar Kampus)",
-                prefixIcon: const Icon(Icons.location_on, color: Color(0xFF004AAD)),
+                hintText: "Lokasi (cth: Malang)",
+                prefixIcon: const Icon(Icons.location_on, color: Colors.grey),
                 border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
-                contentPadding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+                contentPadding: const EdgeInsets.symmetric(horizontal: 15),
               ),
             ),
-
-            const SizedBox(height: 25),
-
-            // --- BAGIAN BUDGET ---
-            const Text("Budget Maksimal", style: TextStyle(fontWeight: FontWeight.bold)),
             const SizedBox(height: 10),
-            TextField(
-              controller: controller.budgetC,
-              keyboardType: TextInputType.number,
-              decoration: InputDecoration(
-                hintText: "Rp 50.000",
-                prefixIcon: const Icon(Icons.attach_money, color: Colors.grey),
-                border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
-                contentPadding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
-              ),
-            ),
-
-            const SizedBox(height: 25),
-
-            // --- BAGIAN VETO ---
-            const Text("Filter Makanan yg dihindari", style: TextStyle(fontWeight: FontWeight.bold)),
-            const SizedBox(height: 10),
+            
+            // Input Veto
             TextField(
               controller: controller.vetoC,
               decoration: InputDecoration(
-                hintText: "Contoh: sate, seafood (alergi)",
+                hintText: "Hindari makanan (cth: pedas, sate)",
                 prefixIcon: const Icon(Icons.block, color: Colors.redAccent),
                 border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
-                contentPadding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+                contentPadding: const EdgeInsets.symmetric(horizontal: 15),
+              ),
+            ),
+            const SizedBox(height: 15),
+            
+            SizedBox(
+              width: double.infinity,
+              height: 45,
+              child: ElevatedButton(
+                onPressed: () => controller.createRoom(),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color(0xFF004AAD),
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                ),
+                child: Obx(() => controller.isLoading.value 
+                  ? const SizedBox(height: 20, width: 20, child: CircularProgressIndicator(color: Colors.white, strokeWidth: 2))
+                  : const Text("Buat & Mulai Vote", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold))
+                ),
               ),
             ),
 
-            const SizedBox(height: 50),
-            
-            // TOMBOL MULAI
+            const SizedBox(height: 30),
+            const Divider(),
+            const SizedBox(height: 20),
+
+            // --- BAGIAN 2: GUEST (JOIN ROOM) ---
+            const Text("GABUNG TEMAN", style: TextStyle(fontWeight: FontWeight.bold, color: Colors.grey)),
+            const SizedBox(height: 10),
+
+            TextField(
+              controller: controller.joinCodeC,
+              keyboardType: TextInputType.number,
+              decoration: InputDecoration(
+                hintText: "Masukkan Kode Room",
+                prefixIcon: const Icon(Icons.vpn_key, color: Colors.grey),
+                border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+                contentPadding: const EdgeInsets.symmetric(horizontal: 15),
+              ),
+            ),
+            const SizedBox(height: 15),
+
             SizedBox(
               width: double.infinity,
-              height: 55,
-              child: ElevatedButton.icon(
-                onPressed: controller.startVotingSession,
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color(0xFF004AAD), 
+              height: 45,
+              child: OutlinedButton(
+                onPressed: () => controller.joinRoom(),
+                style: OutlinedButton.styleFrom(
+                  side: const BorderSide(color: Color(0xFF004AAD)),
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-                  elevation: 3,
                 ),
-                icon: const Icon(Icons.group_add, color: Colors.white),
-                label: const Text(
-                  "Mulai Vote", 
-                  style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold)
-                ),
+                child: const Text("Gabung Room", style: TextStyle(color: Color(0xFF004AAD), fontWeight: FontWeight.bold)),
               ),
             ),
             const SizedBox(height: 20),

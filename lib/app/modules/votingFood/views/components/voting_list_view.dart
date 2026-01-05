@@ -9,37 +9,38 @@ class VotingListView extends GetView<VotingFoodController> {
   Widget build(BuildContext context) {
     return Column(
       children: [
+        // --- HEADER KODE ROOM ---
         Container(
           width: double.infinity,
-          padding: const EdgeInsets.all(12),
-          color: const Color(0xFFD6E4FF), // Biru muda sesuai tema
-          child: const Text(
-            "Pilihanmu Rahasia! Vote sesuai kata hati.", 
-            textAlign: TextAlign.center, 
-            style: TextStyle(color: Colors.black87)
+          padding: const EdgeInsets.all(15),
+          color: Colors.orange.withOpacity(0.1),
+          child: Column(
+            children: [
+              const Text("Bagikan Kode ini ke teman:", style: TextStyle(fontSize: 12)),
+              const SizedBox(height: 5),
+              Obx(() => Text(
+                controller.roomId.value, 
+                style: const TextStyle(fontSize: 28, fontWeight: FontWeight.bold, letterSpacing: 5, color: Colors.orange)
+              )),
+            ],
           ),
         ),
+
         Expanded(
-          // Gunakan Obx agar list update real-time jika filter berubah (opsional)
           child: Obx(() => ListView.builder(
             padding: const EdgeInsets.all(20),
-            // UBAH DISINI: Gunakan displayedOptions (hasil filter)
-            itemCount: controller.displayedOptions.length,
+            itemCount: controller.candidates.length,
             itemBuilder: (context, index) {
-              // UBAH DISINI: Ambil data dari displayedOptions
-              final food = controller.displayedOptions[index];
+              // Ambil data dari Map
+              final food = controller.candidates[index];
               
               return Container(
                 margin: const EdgeInsets.only(bottom: 15),
                 decoration: BoxDecoration(
-                  color: Colors.grey[50], // Warna card lebih terang
+                  color: Colors.grey[50],
                   borderRadius: BorderRadius.circular(10),
                   boxShadow: [
-                    BoxShadow(
-                      color: Colors.grey.withOpacity(0.1),
-                      blurRadius: 4,
-                      offset: const Offset(0, 2),
-                    )
+                    BoxShadow(color: Colors.grey.withOpacity(0.1), blurRadius: 4, offset: const Offset(0, 2))
                   ],
                 ),
                 child: Padding(
@@ -47,21 +48,22 @@ class VotingListView extends GetView<VotingFoodController> {
                   child: Column(
                     children: [
                       Text(
-                        food.name, 
-                        style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16)
+                        food['name'], // Akses Map
+                        style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                        textAlign: TextAlign.center,
                       ),
                       const SizedBox(height: 8),
-                      // Info detail makanan
+                      
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           const Icon(Icons.star, size: 16, color: Colors.amber),
-                          Text(" ${food.rating} | "),
-                          Text("${food.distanceMinutes} min jalan | "),
-                          Text("~Rp ${food.price ~/ 1000}rb"),
+                          Text(" ${food['rating']} | "),
+                          Text("~Rp ${food['price'] ~/ 1000}rb"),
                         ],
                       ),
                       const SizedBox(height: 15),
+                      
                       SizedBox(
                         width: double.infinity,
                         height: 45,
@@ -69,11 +71,9 @@ class VotingListView extends GetView<VotingFoodController> {
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.grey[300],
                             elevation: 0,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(8)
-                            )
+                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8))
                           ),
-                          onPressed: () => controller.submitVote(food.id),
+                          onPressed: () => controller.submitVote(food['id']),
                           child: const Text("Pilih Ini", style: TextStyle(color: Colors.black87)),
                         ),
                       )
