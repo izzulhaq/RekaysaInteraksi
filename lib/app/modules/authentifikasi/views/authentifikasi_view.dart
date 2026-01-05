@@ -6,7 +6,7 @@ import 'register_view.dart';
 class AuthentifikasiView extends GetView<AuthentifikasiController> {
   const AuthentifikasiView({Key? key}) : super(key: key);
 
-  // Tema Warna Deep Navy agar konsisten dengan HomeView
+  // Tema Warna Deep Navy agar konsisten dengan RegisterView
   final Color primaryColor = const Color(0xFF1A237E);
   final Color accentColor = const Color(0xFF5C6BC0);
   final Color backgroundColor = const Color(0xFFF5F7FA);
@@ -18,7 +18,7 @@ class AuthentifikasiView extends GetView<AuthentifikasiController> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            // HEADER (Overlapping style seperti HomeView)
+            // HEADER (Overlapping style)
             _buildHeader(),
             
             const SizedBox(height: 60),
@@ -42,14 +42,15 @@ class AuthentifikasiView extends GetView<AuthentifikasiController> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    // Username Field
-                    _buildLabel("Username"),
+                    // --- EMAIL FIELD (Diupdate dari Username) ---
+                    _buildLabel("Email Address"),
                     TextField(
-                      controller: controller.loginUserC,
+                      controller: controller.loginEmailC, // Pakai controller Email
+                      keyboardType: TextInputType.emailAddress, // Keyboard khusus email
                       decoration: InputDecoration(
-                        hintText: "Enter your username",
+                        hintText: "Enter your email",
                         hintStyle: TextStyle(color: Colors.grey[400], fontSize: 14),
-                        suffixIcon: Icon(Icons.person_outline, color: primaryColor),
+                        suffixIcon: Icon(Icons.email_outlined, color: primaryColor), // Icon Email
                         enabledBorder: UnderlineInputBorder(
                           borderSide: BorderSide(color: Colors.grey.shade300),
                         ),
@@ -61,7 +62,7 @@ class AuthentifikasiView extends GetView<AuthentifikasiController> {
                     
                     const SizedBox(height: 30),
 
-                    // Password Field
+                    // --- PASSWORD FIELD ---
                     _buildLabel("Password"),
                     Obx(() => TextField(
                       controller: controller.loginPassC,
@@ -89,7 +90,7 @@ class AuthentifikasiView extends GetView<AuthentifikasiController> {
 
                     const SizedBox(height: 40),
 
-                    // Login Button
+                    // --- LOGIN BUTTON ---
                     Obx(() => SizedBox(
                       width: double.infinity,
                       height: 55,
@@ -121,7 +122,7 @@ class AuthentifikasiView extends GetView<AuthentifikasiController> {
                     
                     const SizedBox(height: 25),
                     
-                    // Register Link
+                    // --- FOOTER LINK ---
                     Center(
                       child: Column(
                         children: [

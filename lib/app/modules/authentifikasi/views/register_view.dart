@@ -13,7 +13,6 @@ class RegisterView extends GetView<AuthentifikasiController> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: backgroundColor,
-      // AppBar dibuat transparan agar menyatu dengan header biru
       appBar: AppBar(
         backgroundColor: primaryColor,
         elevation: 0,
@@ -27,7 +26,7 @@ class RegisterView extends GetView<AuthentifikasiController> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            // TOP SECTION: Header Melengkung seperti di HomeView
+            // --- TOP SECTION: Header Melengkung ---
             Stack(
               clipBehavior: Clip.none,
               alignment: Alignment.topCenter,
@@ -48,7 +47,7 @@ class RegisterView extends GetView<AuthentifikasiController> {
                     ),
                   ),
                 ),
-                // LINGKARAN LOGO (Overlapping)
+                // LINGKARAN LOGO
                 Positioned(
                   top: 70,
                   child: Container(
@@ -73,7 +72,7 @@ class RegisterView extends GetView<AuthentifikasiController> {
 
             const SizedBox(height: 70),
 
-            // FORM SECTION: Dibungkus Card agar rapi
+            // --- FORM SECTION ---
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Container(
@@ -91,15 +90,44 @@ class RegisterView extends GetView<AuthentifikasiController> {
                 ),
                 child: Column(
                   children: [
-                    _buildInputGroup("Full Name", controller.fullNameC, Icons.person_outline),
-                    _buildInputGroup("Email", controller.emailC, Icons.email_outlined),
-                    _buildInputGroup("Class", controller.classC, Icons.school_outlined),
-                    _buildInputGroup("Section", controller.sectionC, Icons.grid_view),
-                    _buildInputGroup("Roll No.", controller.rollNoC, Icons.format_list_numbered),
+                    // 1. Full Name
+                    _buildInputGroup(
+                      label: "Full Name", 
+                      controller: controller.fullNameC, 
+                      icon: Icons.person_outline
+                    ),
+
+                    // 2. Email
+                    _buildInputGroup(
+                      label: "Email", 
+                      controller: controller.registerEmailC, 
+                      icon: Icons.email_outlined,
+                      inputType: TextInputType.emailAddress
+                    ),
+                    
+                    // 3. Password (Dengan Toggle Mata)
+                    Obx(() => _buildInputGroup(
+                      label: "Password", 
+                      controller: controller.registerPassC, 
+                      icon: Icons.lock_outline,
+                      isPassword: true,
+                      isHidden: controller.isPasswordHidden.value,
+                      onToggle: controller.togglePasswordVisibility
+                    )),
+
+                    // 4. Re-Password (Konfirmasi)
+                    Obx(() => _buildInputGroup(
+                      label: "Re-Password", 
+                      controller: controller.confirmPassC, 
+                      icon: Icons.lock_reset, // Icon beda biar jelas
+                      isPassword: true,
+                      isHidden: controller.isPasswordHidden.value,
+                      onToggle: controller.togglePasswordVisibility
+                    )),
                     
                     const SizedBox(height: 20),
 
-                    // REGISTER BUTTON
+                    // --- REGISTER BUTTON ---
                     Obx(() => SizedBox(
                       width: double.infinity,
                       height: 55,
@@ -139,7 +167,16 @@ class RegisterView extends GetView<AuthentifikasiController> {
     );
   }
 
-  Widget _buildInputGroup(String label, TextEditingController controller, IconData icon) {
+  // --- WIDGET INPUT HELPER (Diupdate untuk Password) ---
+  Widget _buildInputGroup({
+    required String label, 
+    required TextEditingController controller, 
+    required IconData icon,
+    TextInputType inputType = TextInputType.text,
+    bool isPassword = false,
+    bool isHidden = false,
+    VoidCallback? onToggle,
+  }) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -154,13 +191,25 @@ class RegisterView extends GetView<AuthentifikasiController> {
         const SizedBox(height: 8),
         TextField(
           controller: controller,
+          obscureText: isPassword ? isHidden : false, // Logika Hide/Show
+          keyboardType: inputType,
           decoration: InputDecoration(
             prefixIcon: Icon(icon, color: primaryColor, size: 20),
+            // Logika Ikon Mata di Kanan
+            suffixIcon: isPassword 
+              ? IconButton(
+                  icon: Icon(
+                    isHidden ? Icons.visibility_off : Icons.visibility,
+                    color: Colors.grey,
+                  ),
+                  onPressed: onToggle,
+                )
+              : null,
             hintText: "Enter $label",
             hintStyle: TextStyle(color: Colors.grey[400], fontSize: 14),
             contentPadding: const EdgeInsets.symmetric(vertical: 15),
             filled: true,
-            fillColor: backgroundColor.withOpacity(0.5),
+            fillColor: const Color(0xFFF5F7FA).withOpacity(0.5), // Pake warna background
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(12),
               borderSide: BorderSide(color: Colors.grey.shade200),
