@@ -1,4 +1,6 @@
+<img width="1531" height="1530" alt="Logo" src="https://github.com/user-attachments/assets/568f25f7-24d6-4a08-888c-85c2dd1762a2" />
 # lunchify
+
 
 Lunchify adalah aplikasi mobile yang dirancang khusus untuk membantu kelompok (teman, rekan kerja, keluarga) mengambil keputusan tempat makan dengan cepat, demokratis, dan tanpa drama. Tidak lagi ada kebingungan "Makan di mana?" yang memakan waktu berjam-jam.
 
