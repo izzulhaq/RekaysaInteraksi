@@ -184,6 +184,7 @@ class AuthentifikasiView extends GetView<AuthentifikasiController> {
       clipBehavior: Clip.none,
       alignment: Alignment.bottomCenter,
       children: [
+        // ... (Bagian Background Biru Tetap Sama) ...
         Container(
           height: 250,
           width: double.infinity,
@@ -204,7 +205,7 @@ class AuthentifikasiView extends GetView<AuthentifikasiController> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: const [
                 Text(
-                  "Welcome Back",
+                  "Lunchify",
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 28,
@@ -220,7 +221,8 @@ class AuthentifikasiView extends GetView<AuthentifikasiController> {
             ),
           ),
         ),
-        // Overlapping Logo Circle
+        
+        // --- BAGIAN LOGO YANG DIGANTI ---
         Positioned(
           bottom: -45,
           child: Container(
@@ -237,19 +239,13 @@ class AuthentifikasiView extends GetView<AuthentifikasiController> {
                 )
               ],
             ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(Icons.restaurant_menu, size: 35, color: primaryColor),
-                Text(
-                  "LUNCHIFY", 
-                  style: TextStyle(
-                    fontSize: 10, 
-                    fontWeight: FontWeight.bold, 
-                    color: primaryColor
-                  ),
-                )
-              ],
+            // Padding agar gambar tidak terlalu mepet pinggir lingkaran
+            padding: const EdgeInsets.all(15), 
+            
+            // GANTI Column/Icon DENGAN INI:
+            child: Image.asset(
+              "assets/LogoAJ.png", // Sesuaikan nama file Anda
+              fit: BoxFit.contain, // Agar gambar pas di tengah
             ),
           ),
         ),

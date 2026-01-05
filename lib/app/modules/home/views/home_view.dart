@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import '../controllers/home_controller.dart';
 // Import View Profile yang baru dibuat
 import '../../profile/views/profile_view.dart';
+import '../../explore/views/explore_view.dart';
 
 class HomeView extends GetView<HomeController> {
   final Color primaryColor = const Color(0xFF1A237E);
@@ -20,9 +21,9 @@ class HomeView extends GetView<HomeController> {
       body: Obx(() => IndexedStack(
         index: controller.tabIndex.value,
         children: [
-          _buildDashboardView(),  // Index 0: Dashboard (Home)
-          const Center(child: Text("Explore Page (Coming Soon)")), // Index 1: Explore (Placeholder)
-          ProfileView(),          // Index 2: Profile (File yang baru kita buat)
+          _buildDashboardView(),  // Index 0: Home
+          ExploreView(),          // Index 1: EXPLORE (GANTI INI)
+          ProfileView(),          // Index 2: Profile
         ],
       )),
 
