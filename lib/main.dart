@@ -6,7 +6,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart'; 
 
 import 'app/routes/app_pages.dart';
-
+import 'package:firebase_analytics/firebase_analytics.dart';
 // --- TAMBAHAN 2: Ubah main menjadi async ---
 void main() async {
   // --- TAMBAHAN 3: Pastikan binding flutter siap ---
@@ -16,7 +16,7 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-
+  FirebaseAnalytics analytics = FirebaseAnalytics.instance;
   runApp(
     GetMaterialApp(
       title: "Lunchify",

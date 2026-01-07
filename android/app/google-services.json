@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "944421071442",
+    "project_id": "lunchify-d7150",
+    "storage_bucket": "lunchify-d7150.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:944421071442:android:5fa2509233f3cb844a8d8b",
+        "android_client_info": {
+          "package_name": "com.example.lunchify"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC8VutWYFQbbRC4o5eVmEIucuKVrHl2xqM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
